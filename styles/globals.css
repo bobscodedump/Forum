@@ -39,7 +39,7 @@
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-5 text-5xl font-bold leading-[1.15] text-black sm:text-6xl;
 }
 
 .orange_gradient {
@@ -81,7 +81,7 @@
 
 /* Form Component */
 .form_textarea {
-  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 font-inter outline-0;
 }
 
 .form_input {
@@ -94,7 +94,7 @@
 }
 
 .dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[150px] flex flex-col gap-2 justify-end items-end border-gray-300 border-2;
 }
 
 .dropdown_link {
