@@ -6,10 +6,10 @@ import PostCard from "./PostCard";
 
 const PostCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 prompt-layout">
-      {data.map((p) => {
-        <PostCard key={p._id} post={p} handleTagClick={handleTagClick} />;
-      })}
+    <div className="mt-10 prompt-layout">
+      {data.map((post) => (
+        <PostCard key={post._id} post={post} handleTagClick={handleTagClick} />
+      ))}
     </div>
   );
 };
@@ -47,11 +47,7 @@ const Feed = () => {
         />
       </form>
       <PostCardList data={posts} handleTagClick={() => {}} />
-      <div>
-        {posts.map((p) => {
-          <div className="text-black text-xl m-auto">{p.post}</div>;
-        })}
-      </div>
+      <div></div>
     </section>
   );
 };
