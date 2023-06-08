@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const CreatePost = () => {
-  const { data: session } = useSession();
+const EditPost = () => {
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const postId = searchParams.get("id");
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
@@ -16,18 +17,20 @@ const CreatePost = () => {
     tag: "",
   });
 
-  const EditPost = async (e) => {
+  const updatePost = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    console.log("post:" + post);
+
+    if (!postId) {
+      return alert("Missing Post!");
+    }
 
     try {
-      const response = await fetch("/api/post/new", {
-        method: "POST",
+      const response = await fetch(`/api/post/${postId}`, {
+        method: "PATCH",
         body: JSON.stringify({
           post: post.post,
           tag: post.tag,
-          userId: session?.user.id,
         }),
       });
 
@@ -41,15 +44,27 @@ const CreatePost = () => {
     }
   };
 
-  useEffect(() => {}, [postId]);
+  useEffect(() => {
+    const getPost = async () => {
+      const response = await fetch(`/api/post/${postId}`);
+      const data = await response.json();
+
+      setPost({
+        post: data.post,
+        tag: data.tag,
+      });
+    };
+
+    if (postId) getPost();
+  }, [postId]);
 
   return (
     <Form
-      type="Create"
+      type="Edit"
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={createPost}
+      handleSubmit={updatePost}
     />
   );
 };

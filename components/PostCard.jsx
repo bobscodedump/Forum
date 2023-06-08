@@ -57,20 +57,20 @@ const PostCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         className="font-inter text-sm blue_gradient_2 cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
-        {post.tag}
+        #{post.tag}
       </p>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div className="mt-3 -mb-2.5 flex-center gap-4 border-t border-gray-300 py-3">
           <p
             className="font-inter text-sm blue_gradient cursor-pointer"
-            onCLick={handleEdit}
+            onClick={handleEdit}
           >
             Edit
           </p>
           <p
             className="font-inter text-sm blue_gradient cursor-pointer"
-            onCLick={handleDelete}
+            onClick={handleDelete}
           >
             Delete
           </p>
